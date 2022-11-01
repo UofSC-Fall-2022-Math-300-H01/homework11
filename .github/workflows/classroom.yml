@@ -2,8 +2,6 @@ name: GitHub Classroom Workflow
 
 on: 
   push:
-    paths:
-    - 'Hw11.lean'
 
 jobs:
   build:

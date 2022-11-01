@@ -35,7 +35,7 @@
         "setup": "",
         "run": "lake env lean _Tests/Problem2.lean",
         "input" : "",
-        "output": "["Quot.sound", "propext"]",
+        "output": "[Quot.sound, propext]",
         "comparison": "included",
         "timeout": 10,
         "points": 1

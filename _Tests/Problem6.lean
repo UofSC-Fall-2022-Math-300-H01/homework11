@@ -35,7 +35,7 @@ open Lean.Elab.Command
 def names : List String := 
   ["subset_refl","subset_antisym","subset_trans","refl_id","symm_involution", "trans_idempotent"]
 
-def n : Nat := 0
+def n : Nat := 5
 
 def problem : String := names[n]  
 

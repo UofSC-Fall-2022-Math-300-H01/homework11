@@ -1,4 +1,4 @@
-import Hw10
+import Hw11
 import Sets.Basic
 import Functions.Basic
 import Lean.Elab.Print
@@ -6,55 +6,40 @@ import Lean.Elab.Command
 
 open Set
 open Func
+open Relations 
 
-variable (α β γ : Type)
-variable (f : α → β) (g : β → γ) 
-variable (X Y : Set α) (U V : Set β)
+variable { α : Type }
 
-theorem desiredType1 (h : U ⊆ V) : f ⁻¹ U ⊆ f ⁻¹ V := by 
-  intro a h'
-  have : f a ∈ V := h (f a) h'
-  exact this 
+-- Problem 1 
 
-theorem desiredType2 (h₁ : α ≅ β) (h₂ : β ≅ γ) : α ≅ γ := by
-  have ⟨f,u⟩ := h₁ 
-  have ⟨g,v⟩ := h₂ 
-  have l : Bijective (g ∘ f) := by 
-    have (inj : Injective (g ∘ f)) := inj_comp u.left v.left   
-    have (surj : Surjective (g ∘ f)) := surj_comp u.right v.right 
-    exact ⟨inj,surj⟩ 
-  exact ⟨g ∘ f,l⟩ 
+theorem subset_refl_desired : Reflexive (@Subset α) := sorry 
 
-theorem desiredType3 (h : Surjective f) : HasRightInv f := by 
-  let g : β → α := by 
-    intro b 
-    have : ∃ a, f a = b := h b 
-    have (a : α) := Classical.choose this 
-    exact a  
-  have (l : f ∘ g = id) := by 
-    apply funext 
-    intro b 
-    have u : g b = Classical.choose (h b) := by rfl 
-    have v : f (Classical.choose (h b)) = b := Classical.choose_spec (h b)
-    calc 
-      f (g b) = f (Classical.choose (h b))  := by rw [u] 
-      _       = b                           := by rw [v] 
-  exact ⟨g,l⟩ 
+theorem subset_antisymm_desired : AntiSymmetric (@Subset α) := sorry 
 
-theorem desiredType4 (f : α → β) (g : β → γ) (d : LeftInverse f) (e : LeftInverse g) : 
-  (d.to_fun ∘ e.to_fun) ∘ (g ∘ f) = id := sorry 
+theorem subset_trans_desired : Transitive (@Subset α) := sorry 
 
-theorem desiredType5 (h : α ≅ β) : β ≅ α := sorry 
+-- Problem 2 
+
+def Rel_desired (f : α → α) (a₁ a₂ : α) : Prop := sorry 
+
+theorem refl_id_desired (f : α → α) (h : Reflexive (Rel f) ) : f = id := sorry  
+
+theorem symm_involution_desired (f : α → α) (h : Symmetric (Rel f)) : f ∘ f = id := sorry 
+
+theorem trans_idempotent_desired (f : α → α) (h : Transitive (Rel f)) : f ∘ f = f := sorry 
 
 open Lean
 open Lean.Meta
 open Lean.Elab.Command
 
-def n : String := "2"
+def names : List String := 
+  ["subset_refl","subset_antisymm","subset_trans","refl_id","symm_involution", "trans_idempotent"]
 
-def problem : String := "problem"++n
+def n : Nat := 1
 
-def desired : String := "desiredType"++n
+def problem : String := names[n]  
+
+def desired : String := problem++"_desired"
 
 def collectAxiomsOf (constName : Name) : MetaM (List String) := do
   let env ← getEnv

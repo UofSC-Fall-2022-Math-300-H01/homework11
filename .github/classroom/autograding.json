@@ -35,7 +35,7 @@
         "setup": "",
         "run": "lake env lean _Tests/Problem2.lean",
         "input" : "",
-        "output": "[]",
+        "output": "["Quot.sound", "propext"]",
         "comparison": "included",
         "timeout": 10,
         "points": 1
@@ -75,7 +75,7 @@
         "setup": "",
         "run": "lake env lean _Tests/Problem4.lean",
         "input" : "",
-        "output": "[Quot.sound, propext, Classical.choice]",
+        "output": "[Quot.sound]",
         "comparison": "included",
         "timeout": 10,
         "points": 1
@@ -95,10 +95,31 @@
         "setup": "",
         "run": "lake env lean _Tests/Problem5.lean",
         "input" : "",
-        "output": "[Quot.sound, propext]",
+        "output": "[Quot.sound]",
+        "comparison": "included",
+        "timeout": 10,
+        "points": 1
+      },
+      {
+        "name": "Checking Problem 6 Type",
+        "setup": "",
+        "run": "lake env lean _Tests/Problem5.lean",
+        "input" : "",
+        "output": "true",
+        "comparison": "included",
+        "timeout": 10,
+        "points": 1
+      },
+      {
+        "name": "Checking Problem 6 Axioms",
+        "setup": "",
+        "run": "lake env lean _Tests/Problem5.lean",
+        "input" : "",
+        "output": "[Quot.sound]",
         "comparison": "included",
         "timeout": 10,
         "points": 1
       }
+
 ]
 }

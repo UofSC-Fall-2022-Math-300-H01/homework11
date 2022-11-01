@@ -1,3 +1,4 @@
-## Homework 10
+## Homework 11
 
-Translate proofs of theorems on functions between pen-and-paper and Lean. 
+Provide pen-and-paper solutions and Lean solutions to two 
+problems involving relations.
